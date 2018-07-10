@@ -4,13 +4,14 @@ import random
 import webbrowser
 import textwrap
 import getpass
+import math
 
-subprocess.call(["say", "Warning, Authorised Tech No Man Sirs Only"])
+"""subprocess.call(["say", "Warning, Authorised Tech No Man Sirs Only"])
 password = getpass.getpass("What is the password?  ")
 if password != "technomancy":
 	exit()
 
-subprocess.call(["say", "Welcome to the Tech No Man C Portal. Please enjoy your stay."])
+subprocess.call(["say", "Welcome to the Tech No Man C Portal. Please enjoy your stay."])"""
 
 #character sheet
 
@@ -23,38 +24,48 @@ wis_score = 10
 cha_score = 15
 
 #ability modifiers
-str_mod = int((str_score-10)/2)
-dex_mod = int((dex_score-10)/2)
-con_mod = int((con_score-10)/2)
-int_mod = int((int_score-10)/2)
-wis_mod = int((wis_score-10)/2)
-cha_mod = int((cha_score-10)/2)
+str_mod = math.floor((str_score-10)/2)
+dex_mod = math.floor((dex_score-10)/2)
+con_mod = math.floor((con_score-10)/2)
+int_mod = math.floor((int_score-10)/2)
+wis_mod = math.floor((wis_score-10)/2)
+cha_mod = math.floor((cha_score-10)/2)
 
 
 while True:
 	action_taken = input("\nWHAT WOULD YOU LIKE TO DO?  ").lower()
 
+#Displaying character sheet
+	if action_taken == "show sheet":
+
+		print(str_score, dex_score, con_score, int_score, wis_score, cha_score)
+		print("""\n------------------------------------------------------------------------------------------------------------------------------------------
+CHARACTER Radikl|| RACE Human | ALIGNMENT Chaotic Good | SPEED 30ft | LEVEL 9 | BACKGROUND Spy (Hacker) | CLASS Wizard | SCHOOL Abjuration
+------------------------------------------------------------------------------------------------------------------------------------------""")
+
 #Changing scores during game
 	if action_taken == "change score":
-		score_changed = input("What score to change? STR, DEX, CON, INT, WIS, CHA  ").lower()
-		change_method = input("How do you want to change the " + score_changed.upper() + " score? RAISE, LOWER  ").lower()
-		amount_changed = int(input("By how much do you want to " + change_method.upper() + " the " + score_changed.upper() + " score?  "))
+		how_score_changed = input("What score to change and how? (STR, DEX, CON, INT, WIS, CHA) Eg. 'STR + 5'  ").lower().split()
+		score_changed, change_method, amount_changed = how_score_changed
 
 		if score_changed == "str":
-			if change_method == "raise":
-				print("Previous score/mod: " + str(str_score) + "/" + str(str_mod))
+			if change_method == "+":
+				print("\nPrevious score: " + str(str_score) + " Previous mod: " + str(str_mod))
 				def raise_str():
 					global str_score
-					str_score += amount_changed
+					str_score = max((str_score + int(amount_changed)),0)
 					global str_mod
-					str_mod = int((str_score-10)/2)
-					print("New score/mod:" + str(str_score) + "/" + str(str_mod))
+					str_mod = math.floor((str_score-10)/2)
+					print("New score: " + str(str_score) + " New mod: " + str(str_mod))
 				raise_str()
-			if change_method == "lower":
+			if change_method == "-":
+				print("\nPrevious score: " + str(str_score) + " Previous mod: " + str(str_mod))
 				def lower_str():
 					global str_score
-					str_score -= amount_changed
-					print(str_score,str_mod)
+					str_score = max((str_score - int(amount_changed),0))
+					global str_mod
+					str_mod = math.floor((str_score-10)/2)
+					print("New score: " + str(str_score) + " New mod: " + str(str_mod))
 				lower_str()
 		
 	#Casting Spells
