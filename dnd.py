@@ -1,10 +1,31 @@
+"""
+1. All game text provided herein is owned by Wizard of the Coast, and is provided free of charge under the Open Gaming License.
+License information can be found here: http://media.wizards.com/2016/downloads/DND/SRD-OGL_V5.1.pdf
+
+2. DnD Command Line program was designed as an in-game aid for D&D 5e players.
+Copyright (C) 2018 RADIKL
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>."""
+
 import subprocess
 import time
 import random
 import webbrowser
-import textwrap
 import getpass
 import math
+import prettytable
+from prettytable import PrettyTable
 
 """subprocess.call(["say", "Warning, Authorised Tech No Man Sirs Only"])
 password = getpass.getpass("What is the password?  ")
@@ -15,7 +36,27 @@ subprocess.call(["say", "Welcome to the Tech No Man C Portal. Please enjoy your 
 
 #character sheet
 
-#ability scores
+#Level - input current level
+current_level = 9
+
+#HP - Input current information (usually best to put in full health here, it can be changed later with the "change health" command)
+max_hp = 35
+current_hp = 35
+temp_hp = 0
+
+# !!! PROF - DON'T MODIFY !!!
+if current_level in {1, 2, 3, 4}:
+	prof_mod = 2
+if current_level in {5, 6, 7, 8}:
+	prof_mod = 3
+if current_level in {9, 10, 11, 12}:
+	prof_mod = 4
+if current_level in {13, 14, 15, 16}:
+	prof_mod = 5
+if current_level in {17, 18, 19, 20}:
+	prof_mod = 6
+
+#ability scores - input current ability scores
 str_score = 8
 dex_score = 16
 con_score = 8
@@ -23,13 +64,35 @@ int_score = 20
 wis_score = 10
 cha_score = 15
 
-#ability modifiers
+# !!! ability modifiers DO NOT MODIFY !!!
 str_mod = math.floor((str_score-10)/2)
 dex_mod = math.floor((dex_score-10)/2)
 con_mod = math.floor((con_score-10)/2)
 int_mod = math.floor((int_score-10)/2)
 wis_mod = math.floor((wis_score-10)/2)
 cha_mod = math.floor((cha_score-10)/2)
+
+#Proficiency: if you are proficient in a skill below, make sure it has "+ prof_mod", or "+ (2*prof_mod)"" if you have expertise in that skill
+
+arcana_mod = int_mod + prof_mod
+history_mod = int_mod
+investigation_mod = int_mod + prof_mod
+nature_mod = int_mod
+religion_mod = int_mod
+perception_mod = wis_mod
+insight_mod  = wis_mod
+animal_handling_mod = wis_mod
+medicine_mod = wis_mod
+survival_mod = wis_mod
+acrobatics_mod = dex_mod
+slight_of_Hand_mod = dex_mod 
+stealth_mod = dex_mod + prof_mod
+deception_mod = cha_mod + prof_mod
+intimidation_mod = cha_mod  
+performance_mod = cha_mod
+persuasion_mod = cha_mod
+strength_mod = str_mod
+
 
 
 while True:
@@ -38,10 +101,45 @@ while True:
 #Displaying character sheet
 	if action_taken == "show sheet":
 
-		print(str_score, dex_score, con_score, int_score, wis_score, cha_score)
-		print("""\n------------------------------------------------------------------------------------------------------------------------------------------
-CHARACTER Radikl|| RACE Human | ALIGNMENT Chaotic Good | SPEED 30ft | LEVEL 9 | BACKGROUND Spy (Hacker) | CLASS Wizard | SCHOOL Abjuration
-------------------------------------------------------------------------------------------------------------------------------------------""")
+		character_table = PrettyTable(["CHARACTER: Radikl", "RACE: Human", "ALIGNMNET: Chaotic Good", "SPEED: 30ft", "LEVEL: 9", "BACKGROUND: Spy (Hacker)", "CLASS: Wizard", "SCHOOL: Abjuration"]) 
+		character_table.align = "c"
+		character_table.padding_width = 1 
+		character_table.header = False
+		character_table.add_row(["CHARACTER Radikl", "RACE Human", "ALIGNMNET Chaotic Good", "SPEED 30ft", "LEVEL 9", "BACKGROUND Spy (Hacker)", "CLASS Wizard", "SCHOOL Abjuration"])
+		print("")
+		print(character_table,"\n")
+
+		attributes_table = PrettyTable(["MAX HP", "CURRENT HP", "TEMP HP", "      ", "SKILL", "SKILL MOD",]) 
+		attributes_table.align = "l"
+		attributes_table.padding_width = 1 
+		attributes_table.border = False
+		#attributes_table.hrules = prettytable.ALL
+		# One space between column edges and contents (default) 
+		attributes_table.add_row([max_hp,current_hp,temp_hp,"","","",])
+		attributes_table.add_row(["","","","", "Arcana", arcana_mod]) 
+		attributes_table.add_row(["","","","","History", history_mod]) 
+		attributes_table.add_row(["ABILITY","SCORE","MOD","","Investigation", investigation_mod]) 
+		attributes_table.add_row(["","","","", "Nature", nature_mod]) 
+		attributes_table.add_row(["STR", str_score, str_mod,"","Religion",religion_mod]) 
+		attributes_table.add_row(["DEX", dex_score, dex_mod,"","Perception", perception_mod])
+		attributes_table.add_row(["CON", con_score, con_mod,"","Insight", insight_mod])
+		attributes_table.add_row(["INT", int_score, int_mod,"","Animal Handling", animal_handling_mod])
+		attributes_table.add_row(["WIS", wis_score, wis_mod,"","Medicine", medicine_mod])
+		attributes_table.add_row(["CHA", cha_score, cha_mod,"","Survival", survival_mod])
+		attributes_table.add_row(["","","","","Acrobatics",acrobatics_mod])
+		attributes_table.add_row(["","","","","Slight of Hand",slight_of_Hand_mod])
+		attributes_table.add_row(["","","","","Stealth",stealth_mod])
+		attributes_table.add_row(["","","","","Deception",deception_mod])
+		attributes_table.add_row(["","","","","Intimidation",intimidation_mod])
+		attributes_table.add_row(["","","","","Performance",performance_mod])
+		attributes_table.add_row(["","","","","Persuasion",persuasion_mod])
+		attributes_table.add_row(["","","","","Strength",strength_mod])
+
+		print (attributes_table)
+
+		print("")
+		print(character_table)
+
 
 #Changing scores during game
 	if action_taken == "change score":
@@ -75,9 +173,9 @@ CHARACTER Radikl|| RACE Human | ALIGNMENT Chaotic Good | SPEED 30ft | LEVEL 9 | 
 		
 		#Spell Output
 		if spell_cast in {"detect thoughts","neural hack"}:
-			print("""\n-----------------------------------------------------------------------------------------------------------------------------
-DETECT THOUGHTS || LEVEL 2nd | CASTING TIME 1 Action | RANGE/AREA Self | COMPONENTS V,S,M | DURATION C 1m | SCHOOL Divination
------------------------------------------------------------------------------------------------------------------------------
+			print("""\n----------------------------------------------------------------------------------------------------------------------------
+DETECT THOUGHTS | LEVEL 2nd | CASTING TIME 1 Action | RANGE/AREA Self | COMPONENTS V,S,M | DURATION C 1m | SCHOOL Divination
+----------------------------------------------------------------------------------------------------------------------------
 
 For the duration, you can read the thoughts of certain creatures. 
 When you cast the spell and as your action on each turn until the spell ends, 
@@ -105,15 +203,15 @@ You can't detect a creature with an Intelligence of 3 or lower or one that doesn
 Once you detect the presence of a creature in this way, you can read its thoughts for the rest of the duration as described above, 
 even if you can't see it, but it must still be within range.
 
-----------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
 Spell Tags: SOCIAL DETECTION | Available For: BARD SORCERER WIZARD | Basic Rules , pg. 231
-----------------------------------------------------------------------------------------------------------------------------------\n""")
+---------------------------------------------------------------------------------------------------------------------------------\n""")
 			subprocess.call(["say", "Neural Hacking program initiated"])
 		
 		if spell_cast in {"magic missile","basic malware attack"}:
-			print("""\n----------------------------------------------------------------------------------------------------------------------------------
-MAGIC MISSILE || LEVEL 1st | CASTING TIME 1 Action | RANGE/AREA 120ft | COMPONENTS V,S | DURATION Instantaneous | SCHOOL Evocation
-----------------------------------------------------------------------------------------------------------------------------------
+			print("""\n---------------------------------------------------------------------------------------------------------------------------------
+MAGIC MISSILE | LEVEL 1st | CASTING TIME 1 Action | RANGE/AREA 120ft | COMPONENTS V,S | DURATION Instantaneous | SCHOOL Evocation
+---------------------------------------------------------------------------------------------------------------------------------
 
 You create three glowing darts of magical force. 
 Each dart hits a creature of your choice that you can see within range. 
@@ -123,9 +221,9 @@ The darts all strike simultaneously, and you can direct them to hit one creature
 At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, 
 the spell creates one more dart for each slot level above 1st.
 
-----------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
 Spell Tags: SOCIAL DETECTION | Available For: BARD SORCERER WIZARD | Basic Rules , pg. 231
-----------------------------------------------------------------------------------------------------------------------------------\n""")
+---------------------------------------------------------------------------------------------------------------------------------\n""")
 			
 			spell_level = int(input("What level are you casting this at?  "))-1
 			number_rolls = 3 + spell_level
@@ -140,23 +238,23 @@ Spell Tags: SOCIAL DETECTION | Available For: BARD SORCERER WIZARD | Basic Rules
 
 
 		if spell_cast in {"shield","personal firewall"}:
-			print("""\n------------------------------------------------------------------------------------------------------------------------
-SHIELD || LEVEL 1st | CASTING TIME 1 Reaction | RANGE/AREA Self | COMPONENTS V,S | DURATION 1 Round | SCHOOL Abjuration
-------------------------------------------------------------------------------------------------------------------------
+			print("""\n-----------------------------------------------------------------------------------------------------------------------
+SHIELD | LEVEL 1st | CASTING TIME 1 Reaction | RANGE/AREA Self | COMPONENTS V,S | DURATION 1 Round | SCHOOL Abjuration
+-----------------------------------------------------------------------------------------------------------------------
 
 An invisible barrier of magical force appears and protects you. 
 Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, 
 and you take no damage from magic missile.
 
-------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 Spell Tags: WARDING | Available For: SORCERER WIZARD | Basic Rules , pg. 275
-------------------------------------------------------------------------------------------------------------------------\n""")
+-----------------------------------------------------------------------------------------------------------------------\n""")
 			subprocess.call(["say", "Personal Firewall activated"])
 
 		if spell_cast in {"knock","brute force attack"}:
 			print("""\n---------------------------------------------------------------------------------------------------------------------------
-KNOCK || LEVEL 2nd | CASTING TIME 1 Action | RANGE/AREA 60ft | COMPONENTS V | DURATION Instantaneous | SCHOOL Transmutation
----------------------------------------------------------------------------------------------------------------------------
+KNOCK | LEVEL 2nd | CASTING TIME 1 Action | RANGE/AREA 60ft | COMPONENTS V | DURATION Instantaneous | SCHOOL Transmutation
+--------------------------------------------------------------------------------------------------------------------------
 
 Choose an object that you can see within range. The object can be a door, a box, a chest, a set of manacles, 
 a padlock, or another object that contains a mundane or magical means that prevents access.
@@ -169,27 +267,27 @@ during which time the target can be opened and shut normally.
 
 When you cast the spell, a loud knock, audible from as far away as 300 feet, emanates from the target object.
 
----------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------
 Spell Tags: UTILITY | Available For: BARD SORCERER WIZARD | Basic Rules , pg. 254
----------------------------------------------------------------------------------------------------------------------------\n""")
+--------------------------------------------------------------------------------------------------------------------------\n""")
 			subprocess.call(["say", "Brute Force Attack initiated."])
 
 		if spell_cast in {"misty step","proxy server"}:
-			print("""\n------------------------------------------------------------------------------------------------------------------------------------
-MISTY STEP || LEVEL 2nd | CASTING TIME 1 Bonus Action | RANGE/AREA Self | COMPONENTS V | DURATION Instantaneous | SCHOOL Conjuration
-------------------------------------------------------------------------------------------------------------------------------------
+			print("""\n-----------------------------------------------------------------------------------------------------------------------------------
+MISTY STEP | LEVEL 2nd | CASTING TIME 1 Bonus Action | RANGE/AREA Self | COMPONENTS V | DURATION Instantaneous | SCHOOL Conjuration
+-----------------------------------------------------------------------------------------------------------------------------------
 
 Briefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied space that you can see.
 
-------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------
 Spell Tags: TELEPORTATION | Available For: SORCERER WARLOCK WIZARD | Basic Rules , pg. 260
-------------------------------------------------------------------------------------------------------------------------------------\n""")
+-----------------------------------------------------------------------------------------------------------------------------------\n""")
 			subprocess.call(["say", "Proxy Server initialized."])
 
 		if spell_cast in {"mirror image","copy/paste"}:
-			print("""\n--------------------------------------------------------------------------------------------------------------------------
-MIRROR IMAGE || LEVEL 2nd | CASTING TIME 1 Action | RANGE/AREA Self | COMPONENTS V,S | DURATION 1 Minute | SCHOOL Illusion
---------------------------------------------------------------------------------------------------------------------------
+			print("""\n-------------------------------------------------------------------------------------------------------------------------
+MIRROR IMAGE | LEVEL 2nd | CASTING TIME 1 Action | RANGE/AREA Self | COMPONENTS V,S | DURATION 1 Minute | SCHOOL Illusion
+-------------------------------------------------------------------------------------------------------------------------
 
 Three illusory duplicates of yourself appear in your space. Until the spell ends, the duplicates move with you and mimic 
 your actions, shifting position so it's impossible to track which image is real. You can use your action to dismiss the 
@@ -208,9 +306,9 @@ The spell ends when all three duplicates are destroyed.
 A creature is unaffected by this spell if it can't see, if it relies on senses other than sight, such as blindsight, 
 or if it can perceive illusions as false, as with truesight.
 
---------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
 Spell Tags: DECEPTION WARDING | Available For: SORCERER WARLOCK WIZARD | Basic Rules , pg. 260
---------------------------------------------------------------------------------------------------------------------------\n""")
+-------------------------------------------------------------------------------------------------------------------------\n""")
 			subprocess.call(["say", "Copy/Paste protocol initiated."])
 
 		if spell_cast in {"crown of madness","botnet activation"}:
@@ -450,14 +548,14 @@ The spell’s damage increases by 1d6 when you reach 5th level (2d6), 11th level
 Spell Tags: SUMMONING DAMAGE CONTROL | Available For: DRUID SORCERER WARLOCK WIZARD | Xanathar's Guide to Everything , pg. 158
 --------------------------------------------------------------------------------------------------------------------------------------\n""")
 			#Determine number of d6's to role based on level of character casting spell
-			character_level = int(input("What level is your character currently?  "))
-			if character_level in {1, 2, 3, 4}:
+			current_level = int(input("What level is your character currently?  "))
+			if current_level in {1, 2, 3, 4}:
 				number_rolls = 1
-			if character_level in {5, 6, 7, 8, 9, 10}:
+			if current_level in {5, 6, 7, 8, 9, 10}:
 				number_rolls = 2
-			if character_level in {11, 12, 13, 14, 15, 16}:
+			if current_level in {11, 12, 13, 14, 15, 16}:
 				number_rolls = 3
-			if character_level >= 17:
+			if current_level >= 17:
 				number_rolls = 4
 			#Calculate spell damage based on number of d6's rolled
 			spell_damage = [random.randint(1,6) for i in range(number_rolls)]
