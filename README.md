@@ -1,4 +1,4 @@
-DnD Command Line program was designed as an in-game aid for D&D 5e players
+DnD Command Line program was designed as an in-game aid for D&D 5e players.
 Copyright (C) 2018 RADIKL
 
 This program is free software: you can redistribute it and/or modify
