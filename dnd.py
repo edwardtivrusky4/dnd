@@ -32,7 +32,13 @@ password = getpass.getpass("What is the password?  ")
 if password != "technomancy":
 	exit()
 
-subprocess.call(["say", "Welcome to the Tech No Man C Portal. Please enjoy your stay."])"""
+subprocess.call(["say", "Welcome to the Tech No Man C Portal. Please enjoy your stay."])
+
+attributes = {"strength":8}
+attributes ["strength"] -= 3
+
+print(attributes["strength"])
+"""
 
 #character sheet
 
@@ -548,7 +554,6 @@ The spell’s damage increases by 1d6 when you reach 5th level (2d6), 11th level
 Spell Tags: SUMMONING DAMAGE CONTROL | Available For: DRUID SORCERER WARLOCK WIZARD | Xanathar's Guide to Everything , pg. 158
 --------------------------------------------------------------------------------------------------------------------------------------\n""")
 			#Determine number of d6's to role based on level of character casting spell
-			current_level = int(input("What level is your character currently?  "))
 			if current_level in {1, 2, 3, 4}:
 				number_rolls = 1
 			if current_level in {5, 6, 7, 8, 9, 10}:
