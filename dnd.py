@@ -42,8 +42,17 @@ print(attributes["strength"])
 
 #character sheet
 
-#Level - input current level
+#Basic Character Info
 current_level = 9
+character_name = "Radikl"
+character_race = "Human"
+character_align = "Chaotic Good"
+character_speed = "30ft"
+character_background = "Spy (Hacker)"
+character_class = "Wizard"
+character_school = "Abjuration"
+
+
 
 #HP - Input current information (usually best to put in full health here, it can be changed later with the "change health" command)
 max_hp = 35
@@ -117,11 +126,11 @@ while True:
 #Displaying character sheet
 	if action_taken == "show sheet":
 
-		character_table = PrettyTable(["CHARACTER: Radikl", "RACE: Human", "ALIGNMNET: Chaotic Good", "SPEED: 30ft", "LEVEL: 9", "BACKGROUND: Spy (Hacker)", "CLASS: Wizard", "SCHOOL: Abjuration"]) 
+		character_table = PrettyTable(["CHARACTER: " + character_name, "RACE: " + character_race, "ALIGNMNET: " + character_align, "SPEED: " + character_speed, "LEVEL: " + str(current_level), "BACKGROUND: " + character_background, "CLASS: " + character_class, "SCHOOL: " + character_school]) 
 		character_table.align = "c"
-		character_table.padding_width = 1 
+		character_table.padding_width = 1
 		character_table.header = False
-		character_table.add_row(["CHARACTER Radikl", "RACE Human", "ALIGNMNET Chaotic Good", "SPEED 30ft", "LEVEL 9", "BACKGROUND Spy (Hacker)", "CLASS Wizard", "SCHOOL Abjuration"])
+		character_table.add_row(["CHARACTER: " + character_name, "RACE: " + character_race, "ALIGNMNET: " + character_align, "SPEED: " + character_speed, "LEVEL: " + str(current_level), "BACKGROUND: " + character_background, "CLASS: " + character_class, "SCHOOL: " + character_school])
 		print("")
 		print(character_table,"\n")
 
