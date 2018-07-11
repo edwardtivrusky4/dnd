@@ -27,12 +27,12 @@ import math
 import prettytable
 from prettytable import PrettyTable
 
-"""subprocess.call(["say", "Warning, Authorised Tech No Man Sirs Only"])
+"""#subprocess.call(["say", "Warning, Authorised Tech No Man Sirs Only"])
 password = getpass.getpass("What is the password?  ")
 if password != "technomancy":
 	exit()
 
-subprocess.call(["say", "Welcome to the Tech No Man C Portal. Please enjoy your stay."])
+#subprocess.call(["say", "Welcome to the Tech No Man C Portal. Please enjoy your stay."])
 
 attributes = {"strength":8}
 attributes ["strength"] -= 3
@@ -91,13 +91,23 @@ animal_handling_mod = wis_mod
 medicine_mod = wis_mod
 survival_mod = wis_mod
 acrobatics_mod = dex_mod
-slight_of_Hand_mod = dex_mod 
+slight_of_hand_mod = dex_mod 
 stealth_mod = dex_mod + prof_mod
 deception_mod = cha_mod + prof_mod
 intimidation_mod = cha_mod  
 performance_mod = cha_mod
 persuasion_mod = cha_mod
 strength_mod = str_mod
+
+#Every class has certain ability proficiencies. Example, wizards have proficiency in INT and WIS. 
+#For your class modify list below to have those abilities = prof_mod. Otherwise make them = 0. Affects ability checks. 
+
+str_mod_prof = 0
+dex_mod_prof = 0
+con_mod_prof = 0
+int_mod_prof = prof_mod
+wis_mod_prof = prof_mod
+cha_mod_prof = 0
 
 
 
@@ -133,7 +143,7 @@ while True:
 		attributes_table.add_row(["WIS", wis_score, wis_mod,"","Medicine", medicine_mod])
 		attributes_table.add_row(["CHA", cha_score, cha_mod,"","Survival", survival_mod])
 		attributes_table.add_row(["","","","","Acrobatics",acrobatics_mod])
-		attributes_table.add_row(["","","","","Slight of Hand",slight_of_Hand_mod])
+		attributes_table.add_row(["","","","","Slight of Hand",slight_of_hand_mod])
 		attributes_table.add_row(["","","","","Stealth",stealth_mod])
 		attributes_table.add_row(["","","","","Deception",deception_mod])
 		attributes_table.add_row(["","","","","Intimidation",intimidation_mod])
@@ -171,10 +181,226 @@ while True:
 					str_mod = math.floor((str_score-10)/2)
 					print("New score: " + str(str_score) + " New mod: " + str(str_mod))
 				lower_str()
-		
+
+
+	#skill checks
+	if action_taken == "str check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		str_check = die_roll + str_mod + str_mod_prof
+		print("Check with mods: " + str(str_check))
+	if action_taken == "dex check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		dex_check = die_roll + dex_mod + dex_mod_prof
+		print("Check with mods: " + str(dex_check))
+	if action_taken == "con check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		con_check = die_roll + con_mod + con_mod_prof
+		print("Check with mods: " + str(con_check))
+	if action_taken == "int check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		int_check = die_roll + int_mod + int_mod_prof
+		print("Check with mods: " + str(int_check))
+	if action_taken == "wis check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		wis_check = die_roll + wis_mod + wis_mod_prof
+		print("Check with mods: " + str(wis_check))
+	if action_taken == "cha check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		cha_check = die_roll + cha_mod + cha_mod_prof
+		print("Check with mods: " + str(cha_check))
+
+	#ability checks
+	if action_taken == "arcana check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		arcana_check = die_roll + arcana_mod
+		print("Check with mods: " + str(arcana_check))
+	if action_taken == "history check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		history_check = die_roll + history_mod
+		print("Check with mods: " + str(history_check))
+	if action_taken == "investigation check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		investigation_check = die_roll + investigation_mod
+		print("Check with mods: " + str(investigation_check))
+	if action_taken == "nature check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		nature_check = die_roll + nature_mod
+		print("Check with mods: " + str(nature_check))
+	if action_taken == "religion check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		religion_check = die_roll + religion_mod
+		print("Check with mods: " + str(religion_check))
+	if action_taken == "perception check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		perception_check = die_roll + perception_mod
+		print("Check with mods: " + str(perception_check))
+	if action_taken == "insight check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		insight_check = die_roll + insight_mod
+		print("Check with mods: " + str(insight_check))
+	if action_taken == "animal handling check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		animal_handling_check = die_roll + animal_handling_mod
+		print("Check with mods: " + str(animal_handling_check))
+	if action_taken == "medicine check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		medicine_check = die_roll + medicine_mod
+		print("Check with mods: " + str(medicine_check))
+	if action_taken == "survival check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		survival_check = die_roll + survival_mod
+		print("Check with mods: " + str(survival_check))
+	if action_taken == "acrobatics check":
+		acrobatics_check = random.randint(1, 20)+acrobatics_mod
+		print(acrobatics_check)
+	if action_taken == "slight of hand check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		slight_of_hand_check = die_roll + slight_of_hand_mod
+		print("Check with mods: " + str(slight_of_hand_check))
+	if action_taken == "stealth check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		stealth_check = die_roll + stealth_mod
+		print("Check with mods: " + str(stealth_check))
+	if action_taken == "deception check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		deception_check = die_roll + deception_mod
+		print("Check with mods: " + str(deception_check))
+	if action_taken == "intimidation check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		intimidation_check = die_roll + intimidation_mod
+		print("Check with mods: " + str(intimidation_check))
+	if action_taken == "performance check":
+		pdie_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		performance_check = die_roll + performance_mod
+		print("Check with mods: " + str(performance_check))
+	if action_taken == "persuasion check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		persuasion_check = die_roll + persuasion_mod
+		print("Check with mods: " + str(persuasion_check))
+	if action_taken == "strength check":
+		die_roll = random.randint(1, 20)
+		if die_roll == 1:
+			print("\n!! Natural 1 - CRITICAL FAILURE !!")
+		if die_roll == 20:
+			print("\n!! Natural 20 - CRITICAL SUCCESS !!")
+		print("\nDie roll: " + str(die_roll))
+		strength_check = die_roll + strength_mod
+		print("Check with mods: " + str(strength_check))
+
+
 	#Casting Spells
 	if action_taken == "cast spell":
-		subprocess.call(["say", "Spell Net active."])
+		#subprocess.call(["say", "Spell Net active."])
 		spell_cast = input("\nWhat spell are you casting?  ").lower()
 		
 		#Spell Output
@@ -212,9 +438,9 @@ even if you can't see it, but it must still be within range.
 ---------------------------------------------------------------------------------------------------------------------------------
 Spell Tags: SOCIAL DETECTION | Available For: BARD SORCERER WIZARD | Basic Rules , pg. 231
 ---------------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Neural Hacking program initiated"])
+			#subprocess.call(["say", "Neural Hacking program initiated"])
 		
-		if spell_cast in {"magic missile","basic malware attack"}:
+		if spell_cast in {"magic missile" , "basic malware attack"}:
 			print("""\n---------------------------------------------------------------------------------------------------------------------------------
 MAGIC MISSILE | LEVEL 1st | CASTING TIME 1 Action | RANGE/AREA 120ft | COMPONENTS V,S | DURATION Instantaneous | SCHOOL Evocation
 ---------------------------------------------------------------------------------------------------------------------------------
@@ -239,8 +465,8 @@ Spell Tags: SOCIAL DETECTION | Available For: BARD SORCERER WIZARD | Basic Rules
 			total_damage = sum(spell_damage)
 			print("\nTotal damage: {}".format(sum(spell_damage)))
 
-			subprocess.call(["say", "Basic Malware Attack initiated"])
-			subprocess.call(["say", str(number_rolls)+".. D fours rolled. Results are"+str(spell_damage) + "..Total damage equals" + str(sum(spell_damage))])
+			#subprocess.call(["say", "Basic Malware Attack initiated"])
+			#subprocess.call(["say", str(number_rolls)+".. D fours rolled. Results are"+str(spell_damage) + "..Total damage equals" + str(sum(spell_damage))])
 
 
 		if spell_cast in {"shield","personal firewall"}:
@@ -255,7 +481,7 @@ and you take no damage from magic missile.
 -----------------------------------------------------------------------------------------------------------------------
 Spell Tags: WARDING | Available For: SORCERER WIZARD | Basic Rules , pg. 275
 -----------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Personal Firewall activated"])
+			#subprocess.call(["say", "Personal Firewall activated"])
 
 		if spell_cast in {"knock","brute force attack"}:
 			print("""\n---------------------------------------------------------------------------------------------------------------------------
@@ -276,7 +502,7 @@ When you cast the spell, a loud knock, audible from as far away as 300 feet, ema
 --------------------------------------------------------------------------------------------------------------------------
 Spell Tags: UTILITY | Available For: BARD SORCERER WIZARD | Basic Rules , pg. 254
 --------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Brute Force Attack initiated."])
+			#subprocess.call(["say", "Brute Force Attack initiated."])
 
 		if spell_cast in {"misty step","proxy server"}:
 			print("""\n-----------------------------------------------------------------------------------------------------------------------------------
@@ -288,7 +514,7 @@ Briefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied 
 -----------------------------------------------------------------------------------------------------------------------------------
 Spell Tags: TELEPORTATION | Available For: SORCERER WARLOCK WIZARD | Basic Rules , pg. 260
 -----------------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Proxy Server initialized."])
+			#subprocess.call(["say", "Proxy Server initialized."])
 
 		if spell_cast in {"mirror image","copy/paste"}:
 			print("""\n-------------------------------------------------------------------------------------------------------------------------
@@ -315,7 +541,7 @@ or if it can perceive illusions as false, as with truesight.
 -------------------------------------------------------------------------------------------------------------------------
 Spell Tags: DECEPTION WARDING | Available For: SORCERER WARLOCK WIZARD | Basic Rules , pg. 260
 -------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Copy/Paste protocol initiated."])
+			#subprocess.call(["say", "Copy/Paste protocol initiated."])
 
 		if spell_cast in {"crown of madness","botnet activation"}:
 			print("""\n-----------------------------------------------------------------------------------------------------------------------------------
@@ -335,7 +561,7 @@ Also, the target can make a Wisdom saving throw at the end of each of its turns.
 -----------------------------------------------------------------------------------------------------------------------------------
 Spell Tags: CONTROL COMPULSION | Available For: BARD SORCERER WARLOCK WIZARD | Player's Handbook , pg. 229
 -----------------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Bott Net activating"])
+			#subprocess.call(["say", "Bott Net activating"])
 
 		if spell_cast in {"fly","drone mode"}:
 			print("""\n----------------------------------------------------------------------------------------------------------------------------
@@ -351,7 +577,7 @@ you can target one additional creature for each slot level above 3rd.
 ----------------------------------------------------------------------------------------------------------------------------
 Spell Tags: MOVEMENT | Available For: SORCERER WARLOCK WIZARD | Basic Rules , pg. 243
 ----------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Drone mode activated"])
+			#subprocess.call(["say", "Drone mode activated"])
 
 		if spell_cast in {"counterspell","reverse engineer"}:
 			print("""\n-----------------------------------------------------------------------------------------------------------------------
@@ -369,7 +595,7 @@ the interrupted spell has no effect if its level is less than or equal to the le
 -----------------------------------------------------------------------------------------------------------------------
 Spell Tags: NEGATION | Available For: SORCERER WARLOCK WIZARD | Basic Rules , pg. 228
 -----------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Reverse engineering complete"])
+			#subprocess.call(["say", "Reverse engineering complete"])
 
 		if spell_cast in {"lightning bolt","power surge"}:
 			print("""\n----------------------------------------------------------------------------------------------------------------------------------------------
@@ -394,8 +620,8 @@ Spell Tags: DAMAGE | Available For: SORCERER WIZARD | Basic Rules , pg. 255
 			print("\nTotal damage: {}".format(sum(spell_damage)))
 			print("\nHalf damage: {}".format(int((sum(spell_damage)/2))))
 
-			subprocess.call(["say", "Power Surge imminent"])
-			subprocess.call(["say", str(number_rolls)+".. D sixes rolled. Results are"+str(spell_damage) + "..Total damage equals" + str(sum(spell_damage)) + "Dexterity throw may halve damage..Half damage equals" + str(int((sum(spell_damage))/2))])
+			#subprocess.call(["say", "Power Surge imminent"])
+			#subprocess.call(["say", str(number_rolls)+".. D sixes rolled. Results are"+str(spell_damage) + "..Total damage equals" + str(sum(spell_damage)) + "Dexterity throw may halve damage..Half damage equals" + str(int((sum(spell_damage))/2))])
 
 
 		if spell_cast in {"banishment","delete file"}:
@@ -421,7 +647,7 @@ you can target one additional creature for each slot level above 4th.
 -----------------------------------------------------------------------------------------------------------------------------
 Spell Tags: CONTROL BANISHMENT | Available For: CLERIC PALADIN SORCERER WARLOCK WIZARD | Basic Rules , pg. 217
 -----------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "File delete complete"])
+			#subprocess.call(["say", "File delete complete"])
 
 		if spell_cast in {"stoneskin","protective case"}:
 			print("""\n-------------------------------------------------------------------------------------------------------------------------------
@@ -434,7 +660,7 @@ Until the spell ends, the target has resistance to nonmagical bludgeoning, pierc
 -------------------------------------------------------------------------------------------------------------------------------
 Spell Tags: BUFF | Available For: DRUID RANGER SORCERER WIZARD | Basic Rules , pg. 278
 -------------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Protective case applied"])
+			#subprocess.call(["say", "Protective case applied"])
 
 		if spell_cast in {"wall of force","network firewall"}:
 			print("""\n----------------------------------------------------------------------------------------------------------------------------------
@@ -457,7 +683,7 @@ blocking ethereal travel through the wall.
 ----------------------------------------------------------------------------------------------------------------------------------
 Spell Tags: CONTROL WARDING | Available For: WIZARD | Basic Rules , pg. 285
 ----------------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Network Firewall activated."])
+			#subprocess.call(["say", "Network Firewall activated."])
 
 		if spell_cast in {"telekinesis","file relocation"}:
 			print("""\n--------------------------------------------------------------------------------------------------------------------------------
@@ -492,7 +718,7 @@ opening a door or a container, stowing or retrieving an item from an open contai
 --------------------------------------------------------------------------------------------------------------------------------
 Spell Tags: CONTROL MOVEMENT | Available For: SORCERER WIZARD | Basic Rules , pg. 280
 --------------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "File relocation function active"])
+			#subprocess.call(["say", "File relocation function active"])
 
 		if spell_cast in {"locate creature","gps tracking"}:
 			print("""\n--------------------------------------------------------------------------------------------------------------------------------
@@ -511,7 +737,7 @@ This spell can't locate a creature if running water at least 10 feet wide blocks
 --------------------------------------------------------------------------------------------------------------------------------
 Spell Tags: DETECTION | Available For: BARD CLERIC DRUID PALADIN RANGER WIZARD | Basic Rules , pg. 256
 --------------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "GPS tracking initiated"])
+			#subprocess.call(["say", "GPS tracking initiated"])
 
 		if spell_cast in {"minor illusion","hologram"}:
 			print("""\n---------------------------------------------------------------------------------------------------------------------------------------
@@ -536,7 +762,7 @@ becomes faint to the creature.
 ---------------------------------------------------------------------------------------------------------------------------------------
 Spell Tags: CONTROL | Available For: BARD SORCERER WARLOCK WIZARD | Basic Rules , pg. 260
 ---------------------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Hologram projection complete"])
+			#subprocess.call(["say", "Hologram projection complete"])
 
 		if spell_cast in {"infestation","software bugs"}:
 			print("""\n--------------------------------------------------------------------------------------------------------------------------------------
@@ -580,9 +806,9 @@ Spell Tags: SUMMONING DAMAGE CONTROL | Available For: DRUID SORCERER WARLOCK WIZ
 			print("\nTotal damage: {}".format(sum(spell_damage)))
 			print("Direction Moved:" + direction_moved)
 			#Declare outcomes aloud
-			subprocess.call(["say", "Software bugs deployed"])
-			subprocess.call(["say", str(number_rolls)+".. D sixes rolled. Results are"+str(spell_damage) + "..Total damage equals" + str(sum(spell_damage)) + ".... Constitution save may negate damage."])
-			subprocess.call(["say", "If hit target moves 5 feet" + direction_moved])
+			#subprocess.call(["say", "Software bugs deployed"])
+			#subprocess.call(["say", str(number_rolls)+".. D sixes rolled. Results are"+str(spell_damage) + "..Total damage equals" + str(sum(spell_damage)) + ".... Constitution save may negate damage."])
+			#subprocess.call(["say", "If hit target moves 5 feet" + direction_moved])
 
 		if spell_cast in {"message","instant message"}:
 			print("""\n-------------------------------------------------------------------------------------------------------------------------------
@@ -599,7 +825,7 @@ The spell doesn't have to follow a straight line and can travel freely around co
 -------------------------------------------------------------------------------------------------------------------------------
 Spell Tags: COMMUNICATION SOCIAL | Available For: BARD SORCERER WIZARD | Basic Rules , pg. 259
 -------------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Instant message sent"])
+			#subprocess.call(["say", "Instant message sent"])
 
 		if spell_cast in {"light","clap on"}:
 			print("""\n----------------------------------------------------------------------------------------------------------------------------
@@ -617,7 +843,7 @@ Dexterity saving throw to avoid the spell.
 ----------------------------------------------------------------------------------------------------------------------------
 Spell Tags: CREATION UTILITY | Available For: BARD CLERIC SORCERER WIZARD | Basic Rules , pg. 255
 ----------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Clap On protocol initiated"])
+			#subprocess.call(["say", "Clap On protocol initiated"])
 
 		if spell_cast in {"identify","research"}:
 			print("""\n-----------------------------------------------------------------------------------------------------------------------------------
@@ -634,7 +860,7 @@ If you instead touch a creature throughout the casting, you learn what spells, i
 -----------------------------------------------------------------------------------------------------------------------------------
 Spell Tags: DETECTION | Available For: BARD WIZARD KNOWLEDGE | Basic Rules , pg. 252
 -----------------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Researching module active"])
+			#subprocess.call(["say", "Researching module active"])
 
 		if spell_cast in {"alarm","security alarm"}:
 			print("""\n---------------------------------------------------------------------------------------------------------------------
@@ -654,7 +880,7 @@ An audible alarm produces the sound of a hand bell for 10 seconds within 60 feet
 ---------------------------------------------------------------------------------------------------------------------
 Spell Tags: DETECTION | Available For: RANGER WIZARD | Basic Rules , pg. 211
 ---------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Alarm activated"])
+			#subprocess.call(["say", "Alarm activated"])
 
 		if spell_cast in {"unseen servant","basic ai"}:
 			print("""\n------------------------------------------------------------------------------------------------------------------------------
@@ -675,7 +901,7 @@ If you command the servant to perform a task that would move it more than 60 fee
 ------------------------------------------------------------------------------------------------------------------------------
 Spell Tags: CONTROL | Available For: BARD WARLOCK WIZARD | Basic Rules , pg. 284
 ------------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Basic artificial intelligence created"])
+			#subprocess.call(["say", "Basic artificial intelligence created"])
 
 		if spell_cast in {"illusory script","encrypted message"}:
 			print("""\n--------------------------------------------------------------------------------------------------------------------------------
@@ -698,7 +924,7 @@ A creature with truesight can read the hidden message.
 --------------------------------------------------------------------------------------------------------------------------------
 Spell Tags: COMMUNICATION | Available For: BARD WARLOCK WIZARD | Basic Rules , pg. 252
 --------------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Message encrypted"])
+			#subprocess.call(["say", "Message encrypted"])
 
 		if spell_cast in {"find familiar","clockwork toy"}:
 			print("""\n---------------------------------------------------------------------------------------------------------------------------------------
@@ -734,7 +960,7 @@ If the spell requires an attack roll, you use your attack modifier for the roll.
 ---------------------------------------------------------------------------------------------------------------------------------------
 Spell Tags: SUMMONING | Available For: WIZARD | Basic Rules , pg. 240
 ---------------------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Clockwork construction complete"])
+			#subprocess.call(["say", "Clockwork construction complete"])
 
 		if spell_cast in {"magic mouth","pop-up message"}:
 			print("""\n--------------------------------------------------------------------------------------------------------------------------------------
@@ -758,7 +984,7 @@ of the object or when a silver bell rings within 30 feet of it.
 --------------------------------------------------------------------------------------------------------------------------------------
 Spell Tags: COMMUNICATION | Available For: BARD WIZARD | Basic Rules , pg. 257
 --------------------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Pop-Up message deployed"])
+			#subprocess.call(["say", "Pop-Up message deployed"])
 
 		if spell_cast in {"tiny hut","hacker space"}:
 			print("""\n------------------------------------------------------------------------------------------------------------------------------------------
@@ -779,7 +1005,7 @@ of any color you choose, but it is transparent from the inside.
 ------------------------------------------------------------------------------------------------------------------------------------------
 Spell Tags: UTILITY | Available For: BARD WIZARD | Player's Handbook , pg. 255
 ------------------------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Hacker space built"])
+			#subprocess.call(["say", "Hacker space built"])
 
 		if spell_cast in {"telepathic bond","chat room"}:
 			print("""\n--------------------------------------------------------------------------------------------------------------------------------
@@ -795,7 +1021,7 @@ The communication is possible over any distance, though it can’t extend to oth
 --------------------------------------------------------------------------------------------------------------------------------
 Spell Tags: COMMUNICATION | Available For: WIZARD | Player's Handbook , pg. 270
 --------------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Chat room online"])
+			#subprocess.call(["say", "Chat room online"])
 
 		if spell_cast in {"contact other plane","singularity dive"}:
 			print("""\n----------------------------------------------------------------------------------------------------------------------------------
@@ -816,12 +1042,12 @@ phrase as an answer.
 ----------------------------------------------------------------------------------------------------------------------------------
 Spell Tags: COMMUNICATION FOREKNOWLEDGE | Available For: WARLOCK WIZARD | Basic Rules , pg. 226
 ----------------------------------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Preparing dive into singularity"])
+			#subprocess.call(["say", "Preparing dive into singularity"])
 
 
 #Research option opens DnD Beyond page for spell searched
 	if action_taken == "research":
-		subprocess.call(["say", "Research module loaded"])
+		#subprocess.call(["say", "Research module loaded"])
 		thing_researched = input("What do you want to know about?  ").lower()
 		if thing_researched == ("detect thoughts"):
 			webbrowser.open_new("https://www.dndbeyond.com/spells/detect-thoughts")
@@ -883,7 +1109,7 @@ Wall of Fire     |     1d4
 ------------------------------------------------------------------------------------------------------
 Item Tags: CONTROL WARDING | Basic Rules , pg. 159
 ------------------------------------------------------------------------------------------------------\n""")
-			subprocess.call(["say", "Security Portfolio information loaded"])
+			#subprocess.call(["say", "Security Portfolio information loaded"])
 
 #Enables the rolling of dice. Asks user how many of each to roll, then displays and announces results and sum of rolls. 
 	if action_taken == "d4":
@@ -893,7 +1119,7 @@ Item Tags: CONTROL WARDING | Basic Rules , pg. 159
 		print('\n'.join(str(i) for i in roll_total))
 		roll_outcome = sum(roll_total)
 		print("\nSum of rolls: {}".format(sum(roll_total)))
-		subprocess.call(["say", str(number_rolls)+".. D fours rolled. Results are"+str(roll_total) + "..Sum of rolls equals" + str(sum(roll_total))])
+		#subprocess.call(["say", str(number_rolls)+".. D fours rolled. Results are"+str(roll_total) + "..Sum of rolls equals" + str(sum(roll_total))])
 
 	if action_taken == "d6":
 		number_rolls = int(input("How many should I roll?  "))
@@ -902,7 +1128,7 @@ Item Tags: CONTROL WARDING | Basic Rules , pg. 159
 		print('\n'.join(str(i) for i in roll_total))
 		roll_outcome = sum(roll_total)
 		print("\nSum of rolls: {}".format(sum(roll_total)))
-		subprocess.call(["say", str(number_rolls)+".. D sixes rolled. Results are"+str(roll_total) + "..Sum of rolls equals" + str(sum(roll_total))])
+		#subprocess.call(["say", str(number_rolls)+".. D sixes rolled. Results are"+str(roll_total) + "..Sum of rolls equals" + str(sum(roll_total))])
 
 	if action_taken == "d8":
 		number_rolls = int(input("How many should I roll?  "))
@@ -911,7 +1137,7 @@ Item Tags: CONTROL WARDING | Basic Rules , pg. 159
 		print('\n'.join(str(i) for i in roll_total))
 		roll_outcome = sum(roll_total)
 		print("\nSum of rolls: {}".format(sum(roll_total)))
-		subprocess.call(["say", str(number_rolls)+".. D eights rolled. Results are"+str(roll_total) + "..Sum of rolls equals" + str(sum(roll_total))])
+		#subprocess.call(["say", str(number_rolls)+".. D eights rolled. Results are"+str(roll_total) + "..Sum of rolls equals" + str(sum(roll_total))])
 
 	if action_taken == "d10":
 		number_rolls = int(input("How many should I roll?  "))
@@ -920,7 +1146,7 @@ Item Tags: CONTROL WARDING | Basic Rules , pg. 159
 		print('\n'.join(str(i) for i in roll_total))
 		roll_outcome = sum(roll_total)
 		print("\nSum of rolls: {}".format(sum(roll_total)))
-		subprocess.call(["say", str(number_rolls)+".. D tens rolled. Results are"+str(roll_total) + "..Sum of rolls equals" + str(sum(roll_total))])
+		#subprocess.call(["say", str(number_rolls)+".. D tens rolled. Results are"+str(roll_total) + "..Sum of rolls equals" + str(sum(roll_total))])
 
 	if action_taken == "d12":
 		number_rolls = int(input("How many should I roll?  "))
@@ -929,7 +1155,7 @@ Item Tags: CONTROL WARDING | Basic Rules , pg. 159
 		print('\n'.join(str(i) for i in roll_total))
 		roll_outcome = sum(roll_total)
 		print("\nSum of rolls: {}".format(sum(roll_total)))
-		subprocess.call(["say", str(number_rolls)+".. D twelves rolled. Results are"+str(roll_total) + "..Sum of rolls equals" + str(sum(roll_total))])
+		#subprocess.call(["say", str(number_rolls)+".. D twelves rolled. Results are"+str(roll_total) + "..Sum of rolls equals" + str(sum(roll_total))])
 
 	if action_taken == "d20":
 		number_rolls = int(input("How many should I roll?  "))
@@ -938,7 +1164,7 @@ Item Tags: CONTROL WARDING | Basic Rules , pg. 159
 		print('\n'.join(str(i) for i in roll_total))
 		roll_outcome = sum(roll_total)
 		print("\nSum of rolls: {}".format(sum(roll_total)))
-		subprocess.call(["say", str(number_rolls)+".. D twentys rolled. Results are"+str(roll_total) + "..Sum of rolls equals" + str(sum(roll_total))])
+		#subprocess.call(["say", str(number_rolls)+".. D twentys rolled. Results are"+str(roll_total) + "..Sum of rolls equals" + str(sum(roll_total))])
 
 	if action_taken == "d100":
 		number_rolls = int(input("How many should I roll?  "))
@@ -947,7 +1173,7 @@ Item Tags: CONTROL WARDING | Basic Rules , pg. 159
 		print('\n'.join(str(i) for i in roll_total))
 		roll_outcome = sum(roll_total)
 		print("\nSum of rolls: {}".format(sum(roll_total)))
-		subprocess.call(["say", str(number_rolls)+".. D one hundreds rolled. Results are"+str(roll_total) + "..Sum of rolls equals" + str(sum(roll_total))])
+		#subprocess.call(["say", str(number_rolls)+".. D one hundreds rolled. Results are"+str(roll_total) + "..Sum of rolls equals" + str(sum(roll_total))])
 
 	#Joke time!
 	if action_taken == "joke":
@@ -957,101 +1183,101 @@ Item Tags: CONTROL WARDING | Basic Rules , pg. 159
 ...
 
 "A Sneak Peak" """)
-			subprocess.call(["say", "What do you call a mountaintop guarded by rogues?"])
+			#subprocess.call(["say", "What do you call a mountaintop guarded by rogues?"])
 
 		if joke_selected == 2:
 			print("""What do you call the unfair advantage the undead have in Necropolis?
 ...
 
 "Wight Priviledge" """)
-			subprocess.call(["say", "What do you call the unfair advantage the undead have in Necropolis?"])
+			#subprocess.call(["say", "What do you call the unfair advantage the undead have in Necropolis?"])
 
 		if joke_selected == 3:
 			print("""Why do paladins prefer chainmail?
 ...
 
 "Because it's holey armour." """)
-			subprocess.call(["say", "Why do paladins prefer chainmail?"])
+			#subprocess.call(["say", "Why do paladins prefer chainmail?"])
 
 		if joke_selected == 4:
 			print("""What social platform do elves use?
 ...
 
 "Vine" """)
-			subprocess.call(["say", "What social platform do elves use?"])
+			#subprocess.call(["say", "What social platform do elves use?"])
 
 		if joke_selected == 5:
 			print("""How can you tell if a Necromancer is a nerd?
 ...
 
 "If he lives with his mummy" """)
-			subprocess.call(["say", "How can you tell if a Necromancer is a nerd?"])
+			#subprocess.call(["say", "How can you tell if a Necromancer is a nerd?"])
 
 		if joke_selected == 6:
 			print("""Why was the werebat scared to fly outside?
 ...
 
 "Because he heard every cloud has a silver lining" """)
-			subprocess.call(["say", "Why was the where batt scared to fly outside?"])
+			#subprocess.call(["say", "Why was the where batt scared to fly outside?"])
 
 		if joke_selected == 7:
 			print("""What happens if you step on a 1d4 barefoot?
 ...
 
 "You take 1d4 damage" """)
-			subprocess.call(["say", "What happens if you step on a 1d4 barefoot?"])
+			#subprocess.call(["say", "What happens if you step on a 1d4 barefoot?"])
 
 		if joke_selected == 8:
 			print("""Why do dragons refuse to eat paladins?
 ...
 
 "Because they taste so Lawful" """)
-			subprocess.call(["say", "Why do dragons refuse to eat paladins?"])
+			#subprocess.call(["say", "Why do dragons refuse to eat paladins?"])
 
 		if joke_selected == 9:
 			print("""What do you call a group of all rogue players?
 ...
 
 "A suprise party" """)
-			subprocess.call(["say", "What do you call a group of all rogue players?"])
+			#subprocess.call(["say", "What do you call a group of all rogue players?"])
 
 		if joke_selected == 10:
 			print("""Why did the barbarian try to learn lightning spells?
 ...
 
 "the Wizard told him he needed an outlet for his anger" """)
-			subprocess.call(["say", "Why did the barbarian try to learn lightning spells?"])
+			#subprocess.call(["say", "Why did the barbarian try to learn lightning spells?"])
 
 		if joke_selected == 11:
 			print("""Why does everyone love hit points?
 ...
 
 "Because they're the life of the Party" """)
-			subprocess.call(["say", "Why does everyone love hit points?"])
+			#subprocess.call(["say", "Why does everyone love hit points?"])
 
 		if joke_selected == 12:
 			print("""Did you hear about the druid who could wild weapons while using wildshape?
 ...
 "He had the right to bear arms" """)
-			subprocess.call(["say", "Did you hear about the druid who could wild weapons while using wild shape?"])
+			#subprocess.call(["say", "Did you hear about the druid who could wild weapons while using wild shape?"])
 
 		if joke_selected == 13:
 			print("""Two of my players were frusterated that I wouldn't let them play as Chinese Necromancer Twins...
 ...
 "I told them two Wongs can't make a Wight" """)
-			subprocess.call(["say", "Two of my players were frusterated that I wouldn't let them play as Chinese Necromancer Twins..."])
+			#subprocess.call(["say", "Two of my players were frusterated that I wouldn't let them play as Chinese Necromancer Twins..."])
 
 		if joke_selected == 14:
 			print("""How do you get a D&D player to go out with you?
 ...
 "You ask them for a d8" """)
-			subprocess.call(["say", "How do you get a D and D player to go out with you?"])
+			#subprocess.call(["say", "How do you get a D and D player to go out with you?"])
 
 		if joke_selected == 15:
 			print("""A warlock threw a teacup at me...
 ...
 "I guess I should have seen that coming from a tiefling" """)
-			subprocess.call(["say", "A warlock threw a teacup at me..."])
+			#subprocess.call(["say", "A warlock threw a teacup at me..."])
 
 	#exit program
 	if action_taken == "exit":
