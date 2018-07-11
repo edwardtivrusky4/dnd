@@ -191,7 +191,6 @@ while True:
 					print("New score: " + str(str_score) + " New mod: " + str(str_mod))
 				lower_str()
 
-
 	#skill checks
 	if action_taken == "str check":
 		die_roll = random.randint(1, 20)
