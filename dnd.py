@@ -118,6 +118,133 @@ int_mod_prof = prof_mod
 wis_mod_prof = prof_mod
 cha_mod_prof = 0
 
+# Spell List: If you are a spell-casting class fill out the variables below. Otherwise leave them = "". If you want to track spells prepared,
+# Just add a symbol of your choosing before the name such as "@ Magic Missile", and that symbol will appear on your character sheet. When doing
+# this put 2 spaces before all other spell names to make them line up nicely.
+
+cantrip_known_1 = "  Minor Illusion"
+cantrip_known_2 = "  Infestation"
+cantrip_known_3 = "  Message"
+cantrip_known_4 = "  Light" 
+cantrip_known_5 = ""
+cantrip_known_6 = ""
+cantrip_known_7 = ""
+cantrip_known_8 = ""
+cantrip_known_9 = ""
+cantrip_known_10 = ""
+
+ritual_known_1 = "  Identify"
+ritual_known_2 = "  Alarm"
+ritual_known_3 = "  Unseen Servant"
+ritual_known_4 = "  Illusory Script"
+ritual_known_5 = "  Find Familiar"
+ritual_known_6 = "  Magic Mouth"
+ritual_known_7 = "  Tiny Hut"
+ritual_known_8 = "  Telepathic Bond"
+ritual_known_9 = "  Contact Other Plane"
+ritual_known_10 = ""
+
+lvl1_known_1 = "@ Shield"
+lvl1_known_2 = "  Mage Armor"
+lvl1_known_3 = "@ Magic Missile"
+lvl1_known_4 = "  Thunderwave"
+lvl1_known_5 = "  Charm Person"
+lvl1_known_6 = "  Snare"
+lvl1_known_7 = "  Expedius Retreat"
+lvl1_known_8 = " "
+lvl1_known_9 = " "
+lvl1_known_10 = " "
+
+lvl2_known_1 = "  Detect Thoughts"
+lvl2_known_2 = "@ Knock"
+lvl2_known_3 = "@ Misty Step"
+lvl2_known_4 = "  Arcane Lock"
+lvl2_known_5 = "@ Mirror Image"
+lvl2_known_6 = "@ Crown of Madness"
+lvl2_known_7 = "  Suggestion"
+lvl2_known_8 = " "
+lvl2_known_9 = " "
+lvl2_known_10 = " "
+
+lvl3_known_1 = "@ Fly"
+lvl3_known_2 = "  Dispell Magic"
+lvl3_known_3 = "@ Counterspell"
+lvl3_known_4 = "  Blink"
+lvl3_known_5 = "@ Lightning Bolt"
+lvl3_known_6 = "  Gaseous Form"
+lvl3_known_7 = " "
+lvl3_known_8 = " "
+lvl3_known_9 = " "
+lvl3_known_10 = " "
+
+lvl4_known_1 = "@ Banishment"
+lvl4_known_2 = "@ Stoneskin"
+lvl4_known_3 = "@ Locate Creature"
+lvl4_known_4 = " "
+lvl4_known_5 = " "
+lvl4_known_6 = " "
+lvl4_known_7 = " "
+lvl4_known_8 = " "
+lvl4_known_9 = " "
+lvl4_known_10 = " "
+
+lvl5_known_1 = "@ Wall of Force"
+lvl5_known_2 = "  Seeming"
+lvl5_known_3 = "  Synaptic Static"
+lvl5_known_4 = "@ Telekinesis"
+lvl5_known_5 = " "
+lvl5_known_6 = " "
+lvl5_known_7 = " "
+lvl5_known_8 = " "
+lvl5_known_9 = " "
+lvl5_known_10 = " "
+
+lvl6_known_1 = " "
+lvl6_known_2 = " "
+lvl6_known_3 = " "
+lvl6_known_4 = " "
+lvl6_known_5 = " "
+lvl6_known_6 = " "
+lvl6_known_7 = " "
+lvl6_known_8 = " "
+lvl6_known_9 = " "
+lvl6_known_10 = " "
+
+lvl7_known_1 = " "
+lvl7_known_2 = " "
+lvl7_known_3 = " "
+lvl7_known_4 = " "
+lvl7_known_5 = " "
+lvl7_known_6 = " " 
+lvl7_known_7 = " "  
+lvl7_known_8 = " "
+lvl7_known_9 = " "
+lvl7_known_10 = " "
+
+lvl8_known_1 = " "
+lvl8_known_2 = " "
+lvl8_known_3 = " "
+lvl8_known_4 = " "
+lvl8_known_5 = " "
+lvl8_known_6 = " "
+lvl8_known_7 = " "
+lvl8_known_8 = " "
+lvl8_known_9 = " "
+lvl8_known_10 = " "
+
+lvl9_known_1 = " "
+lvl9_known_2 = " "
+lvl9_known_3 = " "
+lvl9_known_4 = " "
+lvl9_known_5 = " "
+lvl9_known_6 = " "
+lvl9_known_7 = " "
+lvl9_known_8 = " "
+lvl9_known_9 = " "
+lvl9_known_10 = " "
+
+
+
 
 
 while True:
@@ -126,7 +253,7 @@ while True:
 #Displaying character sheet
 	if action_taken == "show sheet":
 
-		character_table = PrettyTable(["CHARACTER: " + character_name, "RACE: " + character_race, "ALIGNMNET: " + character_align, "SPEED: " + character_speed, "LEVEL: " + str(current_level), "BACKGROUND: " + character_background, "CLASS: " + character_class, "SCHOOL: " + character_school]) 
+		character_table = PrettyTable(["1", "2", "3", "4", "5", "6", "7", "8"]) 
 		character_table.align = "c"
 		character_table.padding_width = 1
 		character_table.header = False
@@ -134,34 +261,79 @@ while True:
 		print("")
 		print(character_table,"\n")
 
-		attributes_table = PrettyTable(["MAX HP", "CURRENT HP", "TEMP HP", "      ", "SKILL", "SKILL MOD",]) 
+		attributes_table = PrettyTable(["1", "2", "3", "4", "5", "6","7"]) 
 		attributes_table.align = "l"
 		attributes_table.padding_width = 1 
 		attributes_table.border = False
+		attributes_table.header = False
 		#attributes_table.hrules = prettytable.ALL
 		# One space between column edges and contents (default) 
-		attributes_table.add_row([max_hp,current_hp,temp_hp,"","","",])
-		attributes_table.add_row(["","","","", "Arcana", arcana_mod]) 
-		attributes_table.add_row(["","","","","History", history_mod]) 
-		attributes_table.add_row(["ABILITY","SCORE","MOD","","Investigation", investigation_mod]) 
-		attributes_table.add_row(["","","","", "Nature", nature_mod]) 
-		attributes_table.add_row(["STR", str_score, str_mod,"","Religion",religion_mod]) 
-		attributes_table.add_row(["DEX", dex_score, dex_mod,"","Perception", perception_mod])
-		attributes_table.add_row(["CON", con_score, con_mod,"","Insight", insight_mod])
-		attributes_table.add_row(["INT", int_score, int_mod,"","Animal Handling", animal_handling_mod])
-		attributes_table.add_row(["WIS", wis_score, wis_mod,"","Medicine", medicine_mod])
-		attributes_table.add_row(["CHA", cha_score, cha_mod,"","Survival", survival_mod])
-		attributes_table.add_row(["","","","","Acrobatics",acrobatics_mod])
-		attributes_table.add_row(["","","","","Slight of Hand",slight_of_hand_mod])
-		attributes_table.add_row(["","","","","Stealth",stealth_mod])
-		attributes_table.add_row(["","","","","Deception",deception_mod])
-		attributes_table.add_row(["","","","","Intimidation",intimidation_mod])
-		attributes_table.add_row(["","","","","Performance",performance_mod])
-		attributes_table.add_row(["","","","","Persuasion",persuasion_mod])
-		attributes_table.add_row(["","","","","Strength",strength_mod])
+		attributes_table.add_row(["  ", "MAX HP", "CURRENT HP", "TEMP HP", "      ", "SKILL", "SKILL MOD"])
+		attributes_table.add_row(["  ", max_hp,current_hp,temp_hp,"","","",])
+		attributes_table.add_row(["  ", "","","","", "Arcana", arcana_mod]) 
+		attributes_table.add_row(["  ", "","","","","History", history_mod]) 
+		attributes_table.add_row(["  ", "ABILITY","SCORE","MOD","","Investigation", investigation_mod]) 
+		attributes_table.add_row(["  ", "","","","", "Nature", nature_mod]) 
+		attributes_table.add_row(["  ", "STR", str_score, str_mod,"","Religion",religion_mod]) 
+		attributes_table.add_row(["  ", "DEX", dex_score, dex_mod,"","Perception", perception_mod])
+		attributes_table.add_row(["  ", "CON", con_score, con_mod,"","Insight", insight_mod])
+		attributes_table.add_row(["  ", "INT", int_score, int_mod,"","Animal Handling", animal_handling_mod])
+		attributes_table.add_row(["  ", "WIS", wis_score, wis_mod,"","Medicine", medicine_mod])
+		attributes_table.add_row(["  ", "CHA", cha_score, cha_mod,"","Survival", survival_mod])
+		attributes_table.add_row(["  ", "","","","","Acrobatics",acrobatics_mod])
+		attributes_table.add_row(["  ", "","","","","Slight of Hand",slight_of_hand_mod])
+		attributes_table.add_row(["  ", "","","","","Stealth",stealth_mod])
+		attributes_table.add_row(["  ", "","","","","Deception",deception_mod])
+		attributes_table.add_row(["  ", "","","","","Intimidation",intimidation_mod])
+		attributes_table.add_row(["  ", "","","","","Performance",performance_mod])
+		attributes_table.add_row(["  ", "","","","","Persuasion",persuasion_mod])
+		attributes_table.add_row(["  ", "","","","","Strength",strength_mod])
+		attributes_table.add_row(["  ", "","","","","",""])
+
+		#Spell Table
+		spell_table = PrettyTable(["1", "2", "3", "4", "5", "6",]) 
+		spell_table.align = "l"
+		spell_table.padding_width = 1 
+		spell_table.border = False
+		spell_table.header = False
+		#attributes_table.hrules = prettytable.ALL
+		# One space between column edges and contents (default) 
+		spell_table.add_row(["","","","","",""])
+		spell_table.add_row(["  CANTRIPS","  LEVEL 1","  LEVEL 2","  LEVEL 3","  LEVEL 4","  LEVEL 5"])
+		spell_table.add_row(["","","","","",""])
+		spell_table.add_row([cantrip_known_1,lvl1_known_1,lvl2_known_1,lvl3_known_1,lvl4_known_1,lvl5_known_1])
+		spell_table.add_row([cantrip_known_2,lvl1_known_2,lvl2_known_2,lvl3_known_2,lvl4_known_2,lvl5_known_2])
+		spell_table.add_row([cantrip_known_3,lvl1_known_3,lvl2_known_3,lvl3_known_3,lvl4_known_3,lvl5_known_3])
+		spell_table.add_row([cantrip_known_4,lvl1_known_4,lvl2_known_4,lvl3_known_4,lvl4_known_4,lvl5_known_4])
+		spell_table.add_row([cantrip_known_5,lvl1_known_5,lvl2_known_5,lvl3_known_5,lvl4_known_5,lvl5_known_5])
+		spell_table.add_row([cantrip_known_6,lvl1_known_6,lvl2_known_6,lvl3_known_6,lvl4_known_6,lvl5_known_6])
+		spell_table.add_row([cantrip_known_7,lvl1_known_7,lvl2_known_7,lvl3_known_7,lvl4_known_7,lvl5_known_7])
+		spell_table.add_row([cantrip_known_8,lvl1_known_8,lvl2_known_8,lvl3_known_8,lvl4_known_8,lvl5_known_8])
+		spell_table.add_row([cantrip_known_9,lvl1_known_9,lvl2_known_9,lvl3_known_9,lvl4_known_9,lvl5_known_9])
+		spell_table.add_row([cantrip_known_10,lvl1_known_10,lvl2_known_10,lvl3_known_10,lvl4_known_10,lvl5_known_10])
+		spell_table.add_row(["","","","","",""])
+		spell_table.add_row(["  RITUALS","  LEVEL 6","  LEVEL 7","  LEVEL 8","  LEVEL 9",""])
+		spell_table.add_row(["","","","","",""])
+		spell_table.add_row([ritual_known_1,lvl6_known_1,lvl7_known_1,lvl8_known_1,lvl9_known_1,""])
+		spell_table.add_row([ritual_known_2,lvl6_known_2,lvl7_known_2,lvl8_known_2,lvl9_known_2,""])
+		spell_table.add_row([ritual_known_3,lvl6_known_3,lvl7_known_3,lvl8_known_3,lvl9_known_3,""])
+		spell_table.add_row([ritual_known_4,lvl6_known_4,lvl7_known_4,lvl8_known_4,lvl9_known_4,""])
+		spell_table.add_row([ritual_known_5,lvl6_known_5,lvl7_known_5,lvl8_known_5,lvl9_known_5,""])
+		spell_table.add_row([ritual_known_6,lvl6_known_6,lvl7_known_6,lvl8_known_6,lvl9_known_6,""])
+		spell_table.add_row([ritual_known_7,lvl6_known_7,lvl7_known_7,lvl8_known_7,lvl9_known_7,""])
+		spell_table.add_row([ritual_known_8,lvl6_known_8,lvl7_known_8,lvl8_known_8,lvl9_known_8,""])
+		spell_table.add_row([ritual_known_9,lvl6_known_9,lvl7_known_9,lvl8_known_9,lvl9_known_9,""])
+		spell_table.add_row([ritual_known_10,lvl6_known_10,lvl7_known_10,lvl8_known_10,lvl9_known_10,lvl5_known_10])
+
+		
+		
+
+
 
 		print (attributes_table)
-
+		print("")
+		print("--------------------------------------------------------  Spell List  --------------------------------------------------------")
+		print(spell_table)
 		print("")
 		print(character_table)
 
